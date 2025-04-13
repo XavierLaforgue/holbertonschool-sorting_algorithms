@@ -35,21 +35,31 @@ void quick_sort(int *array, size_t size)
 {
 	size_t idx_compare, idx_pos_pivot, idx_pivot_choice = size - 1;
 
-	while (idx_pivot_choice > 0)
+	if (array == NULL || size < 2)
+		return;
+	if (size == 2 && array[0] > array[1])
 	{
-		idx_compare = 0;
-		idx_pos_pivot = 0;
-		while (idx_compare < idx_pivot_choice)
+		swap_array(array, 0, 1, 2);
+		return;
+	}
+	if (size > 2)
+	{
+		while (idx_pivot_choice > 0)
 		{
-			if (array[idx_compare] < array[idx_pivot_choice])
+			idx_compare = 0;
+			idx_pos_pivot = 0;
+			while (idx_compare < idx_pivot_choice)
 			{
-				swap_array(array, idx_compare, idx_pos_pivot, size);
-				++idx_pos_pivot;
+				if (array[idx_compare] < array[idx_pivot_choice])
+				{
+					swap_array(array, idx_compare, idx_pos_pivot, size);
+					++idx_pos_pivot;
+				}
+				++idx_compare;
 			}
-			++idx_compare;
+			swap_array(array, idx_pos_pivot, idx_pivot_choice, size);
+			if (idx_pos_pivot == idx_pivot_choice)
+				--idx_pivot_choice;
 		}
-		swap_array(array, idx_pos_pivot, idx_pivot_choice, size);
-		if (idx_pos_pivot == idx_pivot_choice)
-			--idx_pivot_choice;
 	}
 }
