@@ -14,7 +14,7 @@ void swap_array(int *array, int idx1, int idx2, size_t size)
 {
 	int tmp;
 
-	if (idx1 != idx2)
+	if (array[idx1] != array[idx2])
 	{
 		tmp = array[idx1];
 		array[idx1] = array[idx2];
@@ -42,7 +42,7 @@ void quick_lomuto(int *array, int idx_pos_pivot, int idx_pivot_choice,
 
 	while (idx_compare < idx_pivot_choice)
 	{
-		if (array[idx_compare] < array[idx_pivot_choice])
+		if (array[idx_compare] <= array[idx_pivot_choice])
 		{
 			swap_array(array, idx_compare, idx_pos_pivot, size);
 			++idx_pos_pivot;
